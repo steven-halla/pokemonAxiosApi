@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import axios from 'axios';
+// react is "export default"ed, useState is "export"ed from 'react'
+import React, {useState, useEffect} from 'react';
+
+import {PokemanButton} from './components/PokemanButton';
+//import PokeView from './components/PokeView' // import whatever is "export default"ed from PokeView.
+import {PokemanView} from './components/PokemanView' // import whatever is "export"ed from PokeView. Does not depend on "export default"
+
 import './App.css';
 
-function App() {
+// import logo from './logo.svg';
+
+export const App = () => {
+  // need to set state
+  const [pokeman, setPokeman] = useState([]);
+
+  // useEffect(() =>{
+  //   axios.get('https:pokeapi.co/api/v2/pokemon?limit=1200')
+  //   .then(response => {setPokeman(response.data.results)})
+
+  // }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PokemanButton setPokeman={setPokeman} />
+      <PokemanView pokeman={pokeman} />
     </div>
   );
-}
-
-export default App;
+};
